@@ -24,6 +24,9 @@ jobs:
           ruby-version: 2.7
           bundler-cache: true
 
+      - name: Install pdk
+        run: gem install pdk --user
+
       - name: Bundle install
         run: bundle install
 
