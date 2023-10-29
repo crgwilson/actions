@@ -31,4 +31,4 @@ jobs:
           echo ::endgroup::
 
       - name: Run pdk validate
-        run: pdk validate
+        run: bundle exec pdk validate
