@@ -1,7 +1,7 @@
 # Workflow yoinked from the below URL, since they seem to be restricting access to it (cat-github-actions#44)
 # https://github.com/puppetlabs/cat-github-actions/blob/main/.github/workflows/module_acceptance.yml
 ---
-name: "Module Acceptance"
+name: "puppet litmus"
 
 on:
   workflow_call:

@@ -1,0 +1,31 @@
+---
+name: pdk validate
+
+jobs:
+  validate:
+    name: pdk validate
+    runs-on: ubuntu-latest
+
+    steps:
+      # This is required for the newest releases of litmus which depends
+      # on the ffi gem.
+      - name: Install libffi-dev
+        run: sudo apt-get update && sudo apt-get install libffi-dev
+
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.7
+          bundler-cache: true
+
+      - name: Bundle environment
+        run: |
+          echo ::group::bundler environment
+          bundle env
+          echo ::endgroup::
+
+      - name: Run pdk validate
+        run: pdk validate
