@@ -24,11 +24,8 @@ jobs:
           ruby-version: 2.7
           bundler-cache: true
 
-      - name: Bundle environment
-        run: |
-          echo ::group::bundler environment
-          bundle env
-          echo ::endgroup::
+      - name: Bundle install
+        run: bundle install
 
       - name: Run pdk validate
         run: bundle exec pdk validate
