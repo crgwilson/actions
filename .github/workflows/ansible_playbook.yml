@@ -7,10 +7,7 @@ on:
       runs-on:
         description: Which image to use for this workflow.
         required: false
-        type: choice
-        options:
-          - ubuntu-latest
-          - macos-latest
+        type: string
         default: ubuntu-latest
       python-version:
         description: Comma seperated list of python versions to use.
