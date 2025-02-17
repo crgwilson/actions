@@ -11,7 +11,7 @@ on:
         default: ubuntu-latest
       python-version:
         description: Comma seperated list of python versions to use.
-        default: "3.10,3.11"
+        default: "3.11"
         type: string
         required: false
       requirements-path:
@@ -28,16 +28,12 @@ on:
 jobs:
   ansible-playbook:
     runs-on: ${{ inputs.runs-on }}
-    strategy:
-      max-parallel: 4
-      matrix:
-        python-version: join(inputs.python-version, ',')
 
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
-          python-version: ${{ matrix.python-version }}
+          python-version: ${{ inputs.python-version }}
       - name: Install dependencies
         run: |
           python3 -m pip install --upgrade pip
