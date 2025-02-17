@@ -37,7 +37,7 @@ jobs:
       - name: Install dependencies
         run: |
           python3 -m pip install --upgrade pip
-          python3 -m pip install -r ${{ github.event.repository.name }}/${{ inputs.requirements-path }}
+          python3 -m pip install -r ${{ inputs.requirements-path }}
       - name: Run ansible-playbook
         run: |
-          ansible-playbook ${{ github.event.repository.name }}/${{ inputs.playbook-path }}
+          ansible-playbook ${{ inputs.playbook-path }}
