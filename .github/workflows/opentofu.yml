@@ -4,6 +4,11 @@ name: OpenTofu CI
 on:
   workflow_call:
     inputs:
+      path:
+        description: The subdirectory containing all tf files.
+        required: false
+        default: .
+        type: string
       opentofu_version:
         description: The version of OpenTofu to use
         required: false
@@ -25,9 +30,9 @@ jobs:
           tofu_version: ${{ inputs.opentofu_version }}
 
       - name: Format
-        run: tofu fmt -check -recursive
+        run: tofu fmt -check -recursive ${{ inputs.path }}
 
       - name: Validate
         run: |
-          tofu init -backend=false
-          tofu validate
+          tofu -chdir=${{ inputs.path }} init -backend=false
+          tofu -chdir=${{ inputs.path }} validate
