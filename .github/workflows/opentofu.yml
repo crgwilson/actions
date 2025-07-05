@@ -1,0 +1,33 @@
+---
+name: OpenTofu CI
+
+on:
+  workflow_call:
+    inputs:
+      opentofu_version:
+        description: The version of OpenTofu to use
+        required: false
+        default: latest
+        type: string
+
+jobs:
+  tofu-ci:
+    name: OpenTofu CI Checks
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup OpenTofu
+        uses: opentofu/setup-opentofu@v1
+        with:
+          tofu_version: ${{ inputs.opentofu_version }}
+
+      - name: Format
+        run: tofu fmt -check -recursive
+
+      - name: Validate
+        run: |
+          tofu init -backend=false
+          tofu validate
